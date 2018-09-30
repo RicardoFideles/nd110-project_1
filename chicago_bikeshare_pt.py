@@ -198,7 +198,7 @@ def count_user_types(data_list):
             customer += 1
         elif user_type == "Subscriber":
             subscriber += 1
-        else user_type == "Dependent":
+        elif user_type == "Dependent":
             dependent += 1
     return [customer, subscriber, dependent]
 
