@@ -28,8 +28,8 @@ input("Aperte Enter para continuar...")
 # TAREFA 1
 # TODO: Imprima as primeiras 20 linhas usando um loop para identificar os dados.
 print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
-for i in range(0,20):
-    print(data_list[i])
+for index in range(0,20):
+    print(data_list[index])
 
 # Vamos mudar o data_list para remover o cabeçalho dele.
 data_list = data_list[1:]
@@ -42,8 +42,8 @@ input("Aperte Enter para continuar...")
 # TODO: Imprima o `gênero` das primeiras 20 linhas
 
 print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
-for i in range(0,20):
-    print(data_list[i][6])
+for index in range(0,20):
+    print(data_list[index][6])
 
 # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
 # Mas ainda é difícil pegar uma coluna em uma lista. Exemplo: Lista com todos os gêneros
@@ -183,24 +183,27 @@ input("Aperte Enter para continuar...")
 print("\nTAREFA 7: Verifique o gráfico!")
 def count_user_types(data_list):
     """
-    Cria um lista com o total de user_types "Customer" e "Subscriber"
+    Cria um lista com o total de user_types
     Argumentos:
         param1: Lista de dados
     Retorna:
-        Uma lista com as quantidades de "Customer" e "Subscriber", [count_customer, count_subscriber]
+        Uma lista com as quantidades de "Customer", "Subscriber" e "Dependent", [count_customer, count_subscriber, count_dependent]
     """
     customer = 0
     subscriber = 0
+    dependent = 0
     for line in data_list:
         user_type = line[-3]
         if user_type == "Customer":
             customer += 1
         elif user_type == "Subscriber":
             subscriber += 1
-    return [customer, subscriber]
+        else user_type == "Dependent":
+            dependent += 1
+    return [customer, subscriber, dependent]
 
 usertypes_list = column_to_list(data_list, -3)
-types = ["Customer", "Subscriber"]
+types = ["Customer", "Subscriber", "Dependent"]
 quantity = count_user_types(data_list)
 y_pos = list(range(len(types)))
 plt.bar(y_pos, quantity)
@@ -216,7 +219,7 @@ input("Aperte Enter para continuar...")
 male, female = count_gender(data_list)
 print("\nTAREFA 8: Por que a condição a seguir é Falsa?")
 print("male + female == len(data_list):", male + female == len(data_list))
-answer = "False"
+answer = "A condição é falsa porque não esta somando os casos em que o gênero foi omitido, ou seja, deixado em branco."
 print("resposta:", answer)
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
@@ -256,8 +259,8 @@ def media(lista):
     """
     return ( soma(lista) / len(lista) )
 
-l = trip_duration_list
-l.sort()                                                                                 
+lista_ordenada = trip_duration_list
+lista_ordenada.sort()                                                                                 
 
 def median(lista):     
     """
@@ -276,10 +279,10 @@ def median(lista):
 
 sorted(trip_duration_list, key=int)
 
-min_trip = l[0]
-max_trip = l[-1]
-mean_trip = media(l)
-median_trip = median(l)
+min_trip = lista_ordenada[0]
+max_trip = lista_ordenada[-1]
+mean_trip = media(lista_ordenada)
+median_trip = median(lista_ordenada)
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
 print("Min: ", min_trip, "Max: ", max_trip, "Média: ", mean_trip, "Mediana: ", median_trip)
@@ -352,5 +355,5 @@ if answer == "yes":
     print("Tipos:", types, "Counts:", counts)
     assert len(types) == 3, "TAREFA 12: Há 3 tipos de gênero!"
     assert sum(counts) == 1551505, "TAREFA 12: Resultado de retorno incorreto!"
-    # -----------------------------------------------------
+    # ----------------------------------------------------- 
 
