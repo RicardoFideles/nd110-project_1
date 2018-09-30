@@ -245,8 +245,8 @@ def soma(lista):
         total dos valores
     """
     total = 0
-    for i in lista:
-        total += i
+    for item in lista:
+        total += item
     return total
 
 def media(lista):
@@ -342,7 +342,7 @@ def count_items(column_list):
     item_types = []
     count_items = []
     item_types = set(column_list)
-    count_items = [column_list.count(x) for x in set(item_types)]
+    count_items = [column_list.count(item) for item in set(item_types)]
     
     return item_types, count_items
 
